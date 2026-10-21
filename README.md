@@ -42,3 +42,33 @@ Asignatura impartida por el **Departamento de Ingeniería Eléctrica, Electróni
 Este repositorio tiene finalidad exclusivamente docente.
 
 Si detectas algún error o tienes alguna sugerencia de mejora, puedes comunicarlo al profesorado de la asignatura.
+
+# sii-57552
+
+Juego de tenis para dos jugadores en C++.
+Proyecto de la asignatura Sistemas Informáticos Industriales.
+
+## Autor
+- Guillermo Martín Zapater
+- Nº de matrícula: 57552
+
+## Descripción
+Aplicación gráfica de un juego de tenis en modo local para dos jugadores
+que comparten teclado y pantalla. El proyecto se irá ampliando a lo largo
+de las prácticas de la asignatura.
+
+## Funcionalidades
+- Práctica 1: movimiento de la esfera y de las raquetas.
+  Se han implementado los métodos `Mueve` de las clases `Esfera` y `Raqueta`.
+
+## Controles
+- Raqueta izquierda: `w` (arriba) / `s` (abajo)
+- Raqueta derecha: `o` (arriba) / `l` (abajo)
+
+## Compilación y ejecución
+    cd workspace
+    mkdir build
+    cd build
+    cmake ..
+    make
+    ./tenis
