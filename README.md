@@ -43,14 +43,12 @@ Este repositorio tiene finalidad exclusivamente docente.
 
 Si detectas algún error o tienes alguna sugerencia de mejora, puedes comunicarlo al profesorado de la asignatura.
 
-# sii-57552
+
+# Práctica 1.sii-57552
 
 Juego de tenis para dos jugadores en C++.
 Proyecto de la asignatura Sistemas Informáticos Industriales.
 
-## Autor
-- Guillermo Martín Zapater
-- Nº de matrícula: 57552
 
 ## Descripción
 Aplicación gráfica de un juego de tenis en modo local para dos jugadores
@@ -59,11 +57,7 @@ de las prácticas de la asignatura.
 
 ## Funcionalidades
 - Práctica 1: movimiento de la esfera y de las raquetas.
-  Se han implementado los métodos `Mueve` de las clases `Esfera` y `Raqueta`.
-
-## Controles
-- Raqueta izquierda: `w` (arriba) / `s` (abajo)
-- Raqueta derecha: `o` (arriba) / `l` (abajo)
+  Se han implementado los métodos Mueve de las clases Esfera y Raqueta.
 
 ## Compilación y ejecución
     cd workspace
@@ -72,3 +66,17 @@ de las prácticas de la asignatura.
     cmake ..
     make
     ./tenis
+    
+# Práctica 2.sii-57552
+
+Primeramente, he creado una nueva rama que se llama práctica 2.
+
+Luego, he completado el archivo logger.cpp para que actúe como el proceso receptor de la información.
+
+El logger se encarga de crear la tubería con nombre (mkfifo), abrirla en modo lectura (open), entrar en un bucle infinito para recibir los datos (read), mostrarlos por la salida estándar y destruirla adecuadamente al terminar (close y unlink). Para que funcione correctamente, debo ejecutarlo siempre antes que el juego.
+
+En Mundo.cpp, he añadido el identificador de la tubería como atributo dentro de la clase Mundo, he configurado la apertura de la tubería en modo escritura dentro de la función Init(), y he programado el envío de datos mediante write en el método OnTimer(), de modo que cada vez que un jugador anota un punto, se transmite su nombre y su puntuación total.
+
+He modificado el archivo CMakeLists.txt incluyendo la directiva add_executable(logger logger.cpp) para compilar el nuevo programa.
+
+Por último, he subido los cambios a Bitbucket desde la rama practica2, y he creado la etiqueta correspondiente al finalizar y fusionado la rama con la principal (master).
