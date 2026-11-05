@@ -9,6 +9,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <fcntl.h>
+#include <sys/mman.h>
+#include <unistd.h>
 
 #include <fcntl.h>
 #include <unistd.h>
@@ -20,13 +23,18 @@
 CMundo::CMundo()
 {
 	Init();
+	
 }
 
 CMundo::~CMundo()
 {
+<<<<<<< HEAD
 
   close(fd_logger);
 
+=======
+    munmap(pMemCompartida, sizeof(DatosMemCompartida));
+>>>>>>> practica3
 }
 
 void CMundo::InitGL()
@@ -161,9 +169,16 @@ void CMundo::OnTimer(int value)
 		close(fd_logger);
 		exit(0);
 	}
+	
+	pMemCompartida->esfera = esfera;
+	pMemCompartida->raqueta1 = jugador1;
 
+	switch (pMemCompartida->accion) {
+		case 1:  OnKeyboardDown('w', 0, 0); break;
+		case -1: OnKeyboardDown('s', 0, 0); break;
+		default: jugador1.velocidad.y = 0; break;
+	}
 }
-
 void CMundo::OnKeyboardDown(unsigned char key, int x, int y)
 {
 	switch(key)
@@ -209,6 +224,7 @@ void CMundo::Init()
 	jugador2.x1=6;jugador2.y1=-1;
 	jugador2.x2=6;jugador2.y2=1;
 	
+<<<<<<< HEAD
 	puntos1=0;
 	puntos2=0;
 
@@ -216,4 +232,18 @@ void CMundo::Init()
 	if (fd_logger < 0) {
 		perror("No puede abrirse el FIFO");
 	}
+=======
+	int fd = open("/tmp/datosBot.txt", O_RDWR | O_CREAT | O_TRUNC, 0666);
+	if (fd < 0) { perror("open"); exit(1); }
+
+	ftruncate(fd, sizeof(DatosMemCompartida));
+
+	pMemCompartida = (DatosMemCompartida*) mmap(NULL, sizeof(DatosMemCompartida),
+	                                            PROT_READ | PROT_WRITE,
+	                                            MAP_SHARED, fd, 0);
+	if (pMemCompartida == MAP_FAILED) { perror("mmap"); exit(1); }
+
+	close(fd);
+	pMemCompartida->accion = 0;
+>>>>>>> practica3
 }

@@ -14,6 +14,7 @@
 
 #include "Esfera.h"
 #include "Raqueta.h"
+#include "DatosMemCompartida.h"
 
 class CMundo  
 {
@@ -28,6 +29,7 @@ public:
 	void OnDraw();	
 
 	Esfera esfera;
+	DatosMemCompartida *pMemCompartida;
 	std::vector<Plano> paredes;
 	Plano fondo_izq;
 	Plano fondo_dcho;
